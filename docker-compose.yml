@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  mysql:
+    image: percona:5.7
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - mysql-data:/var/lin/mysqlapp:rw
+    ports:
+      - '${MYSQL_DOCKER_PORT}:3306'
+
+volumes:
+  mysql-data:
